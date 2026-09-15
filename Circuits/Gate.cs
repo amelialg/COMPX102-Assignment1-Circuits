@@ -17,7 +17,6 @@ namespace Circuits
         }
 
         //Make them Virtual...?
-
         // left is the left-hand edge of the main part of the gate.
         // So the input pins are further left than left.
         protected int left;
@@ -39,10 +38,111 @@ namespace Circuits
         /// An AND gate always has two input pins (0 and 1)
         /// and one output pin (number 2).
         /// </summary>
-        
-        protected List<Pin> pins = new List<Pin>(); //?????
+        protected List<Pin> pins = new List<Pin>();
         //Has the gate been selected
         protected bool selected = false;
+
+        /// <summary>
+        /// Gets and sets whether the gate is selected or not.
+        /// </summary>
+        public bool Selected
+        {
+            get { return selected; }
+            set { selected = value; }
+        }
+
+        /// <summary>
+        /// Gets the left hand edge of the gate.
+        /// </summary>
+        public int Left
+        {
+            get { return left; }
+        }
+
+        /// <summary>
+        /// Gets the top edge of the gate.
+        /// </summary>
+        public int Top
+        {
+            get { return top; }
+        }
+
+        /// <summary>
+        /// Gets the list of pins for the gate.
+        /// </summary>
+        public List<Pin> Pins
+        {
+            get { return pins; }
+        }
+
+        /// <summary>
+        /// Checks if the gate has been clicked on.
+        /// </summary>
+        /// <param name="x">The x position of the mouse click</param>
+        /// <param name="y">The y position of the mouse click</param>
+        /// <returns>True if the mouse click position is inside the gate</returns>
+        public virtual bool IsMouseOn(int x, int y)
+        {
+            if (left <= x && x < left + WIDTH
+                && top <= y && y < top + HEIGHT)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Draws the gate in the normal colour or in the selected colour.
+        /// </summary>
+        /// <param name="paper"></param>
+        public virtual void Draw(Graphics paper)
+        {
+            Brush brush;
+            //Check if the gate has been selected
+            if (selected)
+            {
+                brush = selectedBrush;
+            }
+            else
+            {
+                brush = normalBrush;
+            }
+            //Draw each of the pins
+            foreach (Pin p in pins)
+                p.Draw(paper);
+
+            // AND is simple, so we can use a circle plus a rectange.
+            // An alternative would be to use a bitmap.
+            //paper.FillEllipse(brush, left, top, WIDTH, HEIGHT);
+            //paper.FillRectangle(brush, left, top, WIDTH / 2, HEIGHT);
+
+            //Note: You can also use the images that have been imported into the project if you wish,
+            //      using the code below.  You will need to space the pins out a bit more in the constructor.
+            //      There are provided images for the other gates and selected versions of the gates as well.
+            paper.DrawImage(Properties.Resources.AndGate, Left, Top);
+
+
+        }
+
+        /// <summary>
+        /// Moves the gate to the position specified.
+        /// </summary>
+        /// <param name="x">The x position to move the gate to</param>
+        /// <param name="y">The y position to move the gate to</param>
+        public virtual void MoveTo(int x, int y)
+        {
+            //Debugging message
+            Console.WriteLine("pins = " + pins.Count);
+            //Set the position of the gate to the values passed in
+            left = x;
+            top = y;
+            // must move the pins too
+            pins[0].X = x - GAP;
+            pins[0].Y = y + GAP;
+            pins[1].X = x - GAP;
+            pins[1].Y = y + HEIGHT - GAP;
+            pins[2].X = x + WIDTH + GAP;
+            pins[2].Y = y + HEIGHT / 2;
+        }
 
     }
 }

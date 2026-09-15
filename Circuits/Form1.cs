@@ -4,12 +4,29 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Circuits
 {
+
+    //1) Is it a better idea to fully document the Gate class or the AndGate subclass? Can you inherit comments? 
+
+    // 2) What is the advantage of making a method abstract in the superclass
+    // rather than just writing a virtual method with no code in the body of the method?
+
+    // Is there any disadvantage to an abstract method? 
+
+    //3) If a class has an abstract method in it, does the class have to be abstract? 
+
+    //4) What would happen in your program if one of the gates added to your Compound Gate is another Compound Gate?
+
+    //Is your design robust enough to cope with this situation?
+
+
     /// <summary>
     /// The main GUI for the COMPX102 digital circuits editor.
     /// This has a toolbar, containing buttons called buttonAnd, buttonOr, etc.
@@ -37,7 +54,7 @@ namespace Circuits
         /// <summary>
         /// The set of gates in the circuit
         /// </summary>
-        protected List<AndGate> gatesList = new List<AndGate>();
+        protected List<Gate> gatesList = new List<Gate>();
 
         /// <summary>
         /// The set of connector wires in the circuit
@@ -47,12 +64,12 @@ namespace Circuits
         /// <summary>
         /// The currently selected gate, or null if no gate is selected.
         /// </summary>
-        protected AndGate current = null;
+        protected Gate current = null;
 
         /// <summary>
         /// The new gate that is about to be inserted into the circuit
         /// </summary>
-        protected AndGate newGate = null;
+        protected Gate newGate = null;
 
         public Form1()
         {
@@ -69,7 +86,7 @@ namespace Circuits
         /// <returns>The pin that has been selected</returns>
         public Pin findPin(int x, int y)
         {
-            foreach (AndGate g in gatesList)
+            foreach (Gate g in gatesList)
             {
                 foreach (Pin p in g.Pins)
                 {
@@ -169,6 +186,7 @@ namespace Circuits
         private void toolStripButtonAnd_Click(object sender, EventArgs e)
         {
             newGate = new AndGate(0, 0);
+
         }
 
         /// <summary>
@@ -179,7 +197,7 @@ namespace Circuits
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //Draw all of the gates
-            foreach (AndGate g in gatesList)
+            foreach (Gate g in gatesList)
             {
                 g.Draw(e.Graphics);
             }
@@ -251,7 +269,7 @@ namespace Circuits
             else
             {
                 // search for the first gate under the mouse position
-                foreach (AndGate g in gatesList)
+                foreach (Gate g in gatesList)
                 {
                     if (g.IsMouseOn(e.X, e.Y))
                     {

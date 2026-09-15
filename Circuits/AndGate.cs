@@ -11,7 +11,7 @@ namespace Circuits
     /// This class implements an AND gate with two inputs
     /// and one output.
     /// </summary>
-    public class AndGate
+    public class AndGate : Gate
     {
         // left is the left-hand edge of the main part of the gate.
         // So the input pins are further left than left.
@@ -93,7 +93,7 @@ namespace Circuits
         /// <param name="x">The x position of the mouse click</param>
         /// <param name="y">The y position of the mouse click</param>
         /// <returns>True if the mouse click position is inside the gate</returns>
-        public bool IsMouseOn(int x, int y)
+        public override bool IsMouseOn(int x, int y)
         {
             if (left <= x && x < left + WIDTH
                 && top <= y && y < top + HEIGHT)
@@ -106,7 +106,7 @@ namespace Circuits
         /// Draws the gate in the normal colour or in the selected colour.
         /// </summary>
         /// <param name="paper"></param>
-        public void Draw(Graphics paper)
+        public override void Draw(Graphics paper)
         {
             Brush brush;
             //Check if the gate has been selected
@@ -140,7 +140,7 @@ namespace Circuits
         /// </summary>
         /// <param name="x">The x position to move the gate to</param>
         /// <param name="y">The y position to move the gate to</param>
-        public void MoveTo(int x, int y)
+        public override void MoveTo(int x, int y)
         {
             //Debugging message
             Console.WriteLine("pins = " + pins.Count);
