@@ -7,18 +7,12 @@ using System.Threading.Tasks;
 
 namespace Circuits
 {
-    /// <summary>
-    /// This class implements an AND gate with two inputs
-    /// and one output.
-    /// </summary>
-    public class AndGate : Gate
+    public class NotGate : Gate
     {
         /// <summary>
-        /// Initialises the Gate.
+        /// Constructor to initialise the objects passed in.
         /// </summary>
-        /// <param name="x">The x position of the gate</param>
-        /// <param name="y">The y position of the gate</param>
-        public AndGate(int x, int y) : base(x, y)
+        public NotGate(int x, int y) : base(x, y)
         {
             //Add the two input pins to the gate
             pins.Add(new Pin(this, true, 20));
@@ -27,6 +21,15 @@ namespace Circuits
             pins.Add(new Pin(this, false, 20));
             //move the gate and the pins to the position passed in
             MoveTo(x, y);
+        }
+        
+        /// <summary>
+        /// Override the draw method to draw not gate.
+        /// </summary>
+        /// <param name="paper"></param>
+        public override void Draw(Graphics paper)
+        {
+            paper.DrawImage(Properties.Resources.NotGate, Left, Top);
         }
 
         /// <summary>
@@ -45,39 +48,6 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Draws the gate in the normal colour or in the selected colour.
-        /// </summary>
-        /// <param name="paper"></param>
-        public override void Draw(Graphics paper)
-        {
-            Brush brush;
-            //Check if the gate has been selected
-            if (selected)
-            {
-                brush = selectedBrush;
-            }
-            else
-            {
-                brush = normalBrush;
-            }
-            //Draw each of the pins
-            foreach (Pin p in pins)
-                p.Draw(paper);
-
-            // AND is simple, so we can use a circle plus a rectange.
-            // An alternative would be to use a bitmap.
-            //paper.FillEllipse(brush, left, top, WIDTH, HEIGHT);
-            //paper.FillRectangle(brush, left, top, WIDTH / 2, HEIGHT);
-
-            //Note: You can also use the images that have been imported into the project if you wish,
-            //      using the code below.  You will need to space the pins out a bit more in the constructor.
-            //      There are provided images for the other gates and selected versions of the gates as well.
-            paper.DrawImage(Properties.Resources.AndGate, Left, Top);
-
-
-        }
-
-        /// <summary>
         /// Moves the gate to the position specified.
         /// </summary>
         /// <param name="x">The x position to move the gate to</param>
@@ -93,8 +63,8 @@ namespace Circuits
             pins[0].X = x - GAP;    //Input pin 1
             pins[0].Y = y + GAP;
             pins[1].X = x - GAP;    //Input pin 2
-            pins[1].Y = y + HEIGHT;  
-            pins[2].X = x + WIDTH + (GAP*2);    //Output pin
+            pins[1].Y = y + HEIGHT;
+            pins[2].X = x + WIDTH + (GAP * 2);    //Output pin
             pins[2].Y = y + HEIGHT - GAP - 5;
         }
     }

@@ -49,7 +49,7 @@
             this.outputIconButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1344, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1344, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -59,7 +59,7 @@
             this.toolStripButtonAnd.Image = global::Circuits.Properties.Resources.AndIcon;
             this.toolStripButtonAnd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAnd.Name = "toolStripButtonAnd";
-            this.toolStripButtonAnd.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButtonAnd.Size = new System.Drawing.Size(29, 24);
             this.toolStripButtonAnd.Text = "toolStripButton1";
             this.toolStripButtonAnd.Click += new System.EventHandler(this.toolStripButtonAnd_Click);
             // 
@@ -69,8 +69,9 @@
             this.orIconButton.Image = global::Circuits.Properties.Resources.OrIcon;
             this.orIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.orIconButton.Name = "orIconButton";
-            this.orIconButton.Size = new System.Drawing.Size(29, 28);
+            this.orIconButton.Size = new System.Drawing.Size(29, 24);
             this.orIconButton.Text = "orIconButton";
+            this.orIconButton.Click += new System.EventHandler(this.orIconButton_Click);
             // 
             // notIconButton
             // 
@@ -78,8 +79,9 @@
             this.notIconButton.Image = global::Circuits.Properties.Resources.NotIcon;
             this.notIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.notIconButton.Name = "notIconButton";
-            this.notIconButton.Size = new System.Drawing.Size(29, 28);
+            this.notIconButton.Size = new System.Drawing.Size(29, 24);
             this.notIconButton.Text = "notIconButton";
+            this.notIconButton.Click += new System.EventHandler(this.notIconButton_Click);
             // 
             // inputIconButton
             // 
@@ -87,7 +89,7 @@
             this.inputIconButton.Image = global::Circuits.Properties.Resources.InputIcon;
             this.inputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.inputIconButton.Name = "inputIconButton";
-            this.inputIconButton.Size = new System.Drawing.Size(29, 28);
+            this.inputIconButton.Size = new System.Drawing.Size(29, 24);
             this.inputIconButton.Text = "inputIconButton";
             // 
             // outputIconButton
@@ -96,7 +98,7 @@
             this.outputIconButton.Image = global::Circuits.Properties.Resources.OutputIcon;
             this.outputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.outputIconButton.Name = "outputIconButton";
-            this.outputIconButton.Size = new System.Drawing.Size(29, 28);
+            this.outputIconButton.Size = new System.Drawing.Size(29, 24);
             this.outputIconButton.Text = "outputIconButton";
             // 
             // Form1
@@ -106,7 +108,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1344, 897);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Circuits 2023";

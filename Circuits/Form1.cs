@@ -185,7 +185,10 @@ namespace Circuits
         /// <param name="e"></param>
         private void toolStripButtonAnd_Click(object sender, EventArgs e)
         {
+            //Creates an instance of that subclass, assigns to new gate variable.
             newGate = new AndGate(0, 0);
+            //Assign the and gate object to the current gate variable.
+            current = newGate;
 
         }
 
@@ -219,6 +222,32 @@ namespace Circuits
                 newGate.MoveTo(currentX, currentY);
                 newGate.Draw(e.Graphics);
             }
+        }
+
+        /// <summary>
+        /// This will create a new or gate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void orIconButton_Click(object sender, EventArgs e)
+        {
+            //Creates an instance of that subclass, assigns to new gate variable.
+            newGate = new OrGate(0, 0);
+            //Assign the or gate object to the current gate variable.
+            current = newGate;
+        }
+
+        /// <summary>
+        /// This will create a new not gate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notIconButton_Click(object sender, EventArgs e)
+        {
+            //Creates an instance of that subclass, assigns to new gate variable.
+            newGate = new NotGate(0, 0);
+            //Assign the not gate object to the current gate variable.
+            current = newGate;
         }
 
         /// <summary>
