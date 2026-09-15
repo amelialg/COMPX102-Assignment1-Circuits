@@ -25,6 +25,21 @@ namespace Circuits
 
         public override void Draw(Graphics paper)
         {
+            Brush brush;
+            //Check if the gate has been selected
+            if (selected)
+            {
+                brush = selectedBrush;
+            }
+            else
+            {
+                brush = normalBrush;
+            }
+            //Draw each of the pins
+            foreach (Pin p in pins)
+                p.Draw(paper);
+
+            //Draw the gate with image from resources
             paper.DrawImage(Properties.Resources.OrGate, Left, Top);
         }
 
@@ -60,7 +75,7 @@ namespace Circuits
             pins[0].Y = y + GAP;
             pins[1].X = x - GAP;    //Input pin 2
             pins[1].Y = y + HEIGHT;
-            pins[2].X = x + WIDTH + (GAP * 2);    //Output pin
+            pins[2].X = x + WIDTH + (GAP * 4);    //Output pin
             pins[2].Y = y + HEIGHT - GAP - 5;
         }
     }
