@@ -251,6 +251,32 @@ namespace Circuits
         }
 
         /// <summary>
+        /// This will create a new input.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void inputIconButton_Click(object sender, EventArgs e)
+        {
+            //Creates an instance of that subclass, assigns to new gate variable.
+            newGate = new InputSource(0, 0);
+            //Assign the not gate object to the current gate variable.
+            current = newGate;
+        }
+
+        /// <summary>
+        /// This will create a new output.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void outputIconButton_Click(object sender, EventArgs e)
+        {
+            //Creates an instance of that subclass, assigns to new gate variable.
+            newGate = new Output(0, 0);
+            //Assign the not gate object to the current gate variable.
+            current = newGate;
+        }
+
+        /// <summary>
         /// Handles events while the mouse button is pressed down.
         /// </summary>
         /// <param name="sender"></param>
