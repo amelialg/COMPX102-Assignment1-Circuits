@@ -272,7 +272,7 @@ namespace Circuits
         private void outputIconButton_Click(object sender, EventArgs e)
         {
             //Creates an instance of that subclass, assigns to new gate variable.
-            newGate = new Output(0, 0);
+            newGate = new OutputLamp(0, 0);
             //Assign the not gate object to the current gate variable.
             current = newGate;
         }

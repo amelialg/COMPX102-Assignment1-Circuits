@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Circuits
 {
-    public class Output : Gate
+    public class OutputLamp : Gate
     {
         //ON brush
         protected Brush OFFBrush = Brushes.DarkSlateGray;
@@ -17,7 +17,7 @@ namespace Circuits
 
 
         //Constructor
-        public Output(int x, int y) : base (x, y)
+        public OutputLamp(int x, int y) : base (x, y)
         {
             //Add the input pin to the gate
             pins.Add(new Pin(this, true, 20));
@@ -44,21 +44,6 @@ namespace Circuits
             //Draw each of the pins
             foreach (Pin p in pins)
                 p.Draw(paper);
-
-            
-
-            //Each time InputSource is selected, boolean value should toggle.
-            //selecting it once changes the boolean value from false to true
-            if (selected == true)
-            {
-                //high voltage (true) 
-                OnOffStatus = !OnOffStatus;
-            }
-            // selecting it again changes it from true back to false.
-            else
-            {
-                selected = false; //zero voltage (false)
-            }
 
             //Check whether output pin is high voltage (true) or zero voltage (false)
             if (OnOffStatus == true) //glow like a small coloured lamp

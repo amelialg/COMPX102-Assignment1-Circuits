@@ -89,7 +89,7 @@
             this.inputIconButton.Image = global::Circuits.Properties.Resources.InputIcon;
             this.inputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.inputIconButton.Name = "inputIconButton";
-            this.inputIconButton.Size = new System.Drawing.Size(29, 28);
+            this.inputIconButton.Size = new System.Drawing.Size(29, 24);
             this.inputIconButton.Text = "inputIconButton";
             this.inputIconButton.Click += new System.EventHandler(this.inputIconButton_Click);
             // 
@@ -99,7 +99,7 @@
             this.outputIconButton.Image = global::Circuits.Properties.Resources.OutputIcon;
             this.outputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.outputIconButton.Name = "outputIconButton";
-            this.outputIconButton.Size = new System.Drawing.Size(29, 28);
+            this.outputIconButton.Size = new System.Drawing.Size(29, 24);
             this.outputIconButton.Text = "outputIconButton";
             this.outputIconButton.Click += new System.EventHandler(this.outputIconButton_Click);
             // 
