@@ -10,11 +10,12 @@ namespace Circuits
 {
     public class InputSource : Gate
     {
-        ////boolean variable for output voltage
-        protected bool outputVoltage;
-        
+
         //High voltage brush
         protected Brush highVoltageBrush = Brushes.GreenYellow;
+
+        //Boolean variable for output voltage
+        protected bool outputVoltage = false;
 
         //Constructor
         public InputSource (int x, int y) : base (x, y) 
@@ -26,12 +27,13 @@ namespace Circuits
         }
          
         /// <summary>
-        /// Override the draw method to draw not gate.
+        /// Override the draw method to draw the Input Source.
         /// </summary>
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
             Brush brush;
+
             //Check if the gate has been selected
             if (selected)
             {
@@ -50,26 +52,25 @@ namespace Circuits
             //Draw the gate with image from resources
             paper.DrawImage(Properties.Resources.InputIcon, Left, Top);
 
-            //Check whether output pin is high voltage (true) or zero voltage (false)
+            //Each time InputSource is selected, boolean value should toggle.
+            //selecting it once changes the boolean value from false to true
             if (selected == true)
             {
-                //Each time InputSource is selected, boolean value should toggle.
-                //selecting it once should change the boolean value from false to true, selecting it again should change it from true back to false.
                 //high voltage (true) 
-                 outputVoltage = true;
+                outputVoltage = !outputVoltage;
             }
+            // selecting it again changes it from true back to false.
             else
             {
-                //zero voltage (false)
-                outputVoltage = false;
+                selected = false; //zero voltage (false)
             }
 
-            //Make gate a different colour when its boolean value is high (true)
-            if (selected == true)
+            //Check whether output pin is high voltage (true) or zero voltage (false)
+            if (outputVoltage == true)
             {
+                //Make gate a different colour when its boolean value is high (true)
                 brush = highVoltageBrush;
                 paper.FillRectangle(brush, Left, Top, 15, 15);
-
             }
 
         }

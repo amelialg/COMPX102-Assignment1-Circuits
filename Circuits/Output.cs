@@ -9,6 +9,14 @@ namespace Circuits
 {
     public class Output : Gate
     {
+        //ON brush
+        protected Brush OFFBrush = Brushes.DarkSlateGray;
+
+        //Boolean variable for current on/off status
+        protected bool OnOffStatus = false;
+
+
+        //Constructor
         public Output(int x, int y) : base (x, y)
         {
             //Add the input pin to the gate
@@ -18,7 +26,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Override the draw method to draw not gate.
+        /// Override the draw method to draw the output gate.
         /// </summary>
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
@@ -37,8 +45,33 @@ namespace Circuits
             foreach (Pin p in pins)
                 p.Draw(paper);
 
-            //Draw the gate with image from resources
-            paper.DrawImage(Properties.Resources.OutputIcon, Left, Top);
+            
+
+            //Each time InputSource is selected, boolean value should toggle.
+            //selecting it once changes the boolean value from false to true
+            if (selected == true)
+            {
+                //high voltage (true) 
+                OnOffStatus = !OnOffStatus;
+            }
+            // selecting it again changes it from true back to false.
+            else
+            {
+                selected = false; //zero voltage (false)
+            }
+
+            //Check whether output pin is high voltage (true) or zero voltage (false)
+            if (OnOffStatus == true) //glow like a small coloured lamp
+            {                
+                //Draw the gate with image from resources
+                paper.DrawImage(Properties.Resources.OutputIcon, Left, Top);
+            }
+            else
+            {
+                //Dark when it is false
+                brush = OFFBrush;
+                paper.FillEllipse(brush, Left, Top, 15, 15);
+            }
         }
 
         /// <summary>

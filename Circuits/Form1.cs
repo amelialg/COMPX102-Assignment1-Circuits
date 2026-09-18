@@ -14,6 +14,7 @@ namespace Circuits
 {
 
     //1) Is it a better idea to fully document the Gate class or the AndGate subclass? Can you inherit comments? 
+    //The Gate class is more important, as you can inherit comments
 
     // 2) What is the advantage of making a method abstract in the superclass
     // rather than just writing a virtual method with no code in the body of the method?
@@ -225,7 +226,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// This will create a new or gate.
+        /// This will create a new Or gate.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -238,7 +239,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// This will create a new not gate.
+        /// This will create a new Not gate.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -251,7 +252,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// This will create a new input.
+        /// This will create a new Input source.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
