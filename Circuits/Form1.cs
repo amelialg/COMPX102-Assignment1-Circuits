@@ -190,7 +190,6 @@ namespace Circuits
             newGate = new AndGate(0, 0);
             //Assign the and gate object to the current gate variable.
             current = newGate;
-
         }
 
         /// <summary>
@@ -275,6 +274,42 @@ namespace Circuits
             newGate = new OutputLamp(0, 0);
             //Assign the not gate object to the current gate variable.
             current = newGate;
+        }
+
+        /// <summary>
+        /// Loop through all the gates and asks each output lamp to evaluate itself.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evaluateIconButton_Click(object sender, EventArgs e)
+        {
+            //For each gate in gates list.
+            foreach(Gate g in gatesList)
+            {
+                //Check if gate is output lamp.
+                if (g is OutputLamp)
+                {
+                    //Ask each output lamp to evaluate itself.
+                    OutputLamp lamp = g as OutputLamp;
+                    lamp.Evaluate();
+                }
+            }
+            this.Invalidate();
+        }
+
+        /// <summary>
+        /// Call the Clone() method of the currently selected gate and assign to new gate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void copyButton_Click(object sender, EventArgs e)
+        {
+            //If a gate is selected.
+            if (current != null)
+            {
+                //Set current gate to new gate.
+                newGate = current.Clone();
+            }
         }
 
         /// <summary>

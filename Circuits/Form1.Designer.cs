@@ -34,6 +34,8 @@
             this.notIconButton = new System.Windows.Forms.ToolStripButton();
             this.inputIconButton = new System.Windows.Forms.ToolStripButton();
             this.outputIconButton = new System.Windows.Forms.ToolStripButton();
+            this.evaluateIconButton = new System.Windows.Forms.ToolStripButton();
+            this.copyButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +48,9 @@
             this.orIconButton,
             this.notIconButton,
             this.inputIconButton,
-            this.outputIconButton});
+            this.outputIconButton,
+            this.evaluateIconButton,
+            this.copyButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1344, 31);
@@ -59,7 +63,7 @@
             this.toolStripButtonAnd.Image = global::Circuits.Properties.Resources.AndIcon;
             this.toolStripButtonAnd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAnd.Name = "toolStripButtonAnd";
-            this.toolStripButtonAnd.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButtonAnd.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonAnd.Text = "toolStripButton1";
             this.toolStripButtonAnd.Click += new System.EventHandler(this.toolStripButtonAnd_Click);
             // 
@@ -69,7 +73,7 @@
             this.orIconButton.Image = global::Circuits.Properties.Resources.OrIcon;
             this.orIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.orIconButton.Name = "orIconButton";
-            this.orIconButton.Size = new System.Drawing.Size(29, 24);
+            this.orIconButton.Size = new System.Drawing.Size(29, 28);
             this.orIconButton.Text = "orIconButton";
             this.orIconButton.Click += new System.EventHandler(this.orIconButton_Click);
             // 
@@ -79,7 +83,7 @@
             this.notIconButton.Image = global::Circuits.Properties.Resources.NotIcon;
             this.notIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.notIconButton.Name = "notIconButton";
-            this.notIconButton.Size = new System.Drawing.Size(29, 24);
+            this.notIconButton.Size = new System.Drawing.Size(29, 28);
             this.notIconButton.Text = "notIconButton";
             this.notIconButton.Click += new System.EventHandler(this.notIconButton_Click);
             // 
@@ -89,7 +93,7 @@
             this.inputIconButton.Image = global::Circuits.Properties.Resources.InputIcon;
             this.inputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.inputIconButton.Name = "inputIconButton";
-            this.inputIconButton.Size = new System.Drawing.Size(29, 24);
+            this.inputIconButton.Size = new System.Drawing.Size(29, 28);
             this.inputIconButton.Text = "inputIconButton";
             this.inputIconButton.Click += new System.EventHandler(this.inputIconButton_Click);
             // 
@@ -99,9 +103,29 @@
             this.outputIconButton.Image = global::Circuits.Properties.Resources.OutputIcon;
             this.outputIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.outputIconButton.Name = "outputIconButton";
-            this.outputIconButton.Size = new System.Drawing.Size(29, 24);
+            this.outputIconButton.Size = new System.Drawing.Size(29, 28);
             this.outputIconButton.Text = "outputIconButton";
             this.outputIconButton.Click += new System.EventHandler(this.outputIconButton_Click);
+            // 
+            // evaluateIconButton
+            // 
+            this.evaluateIconButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.evaluateIconButton.Image = global::Circuits.Properties.Resources.EvaluateIcon;
+            this.evaluateIconButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.evaluateIconButton.Name = "evaluateIconButton";
+            this.evaluateIconButton.Size = new System.Drawing.Size(29, 28);
+            this.evaluateIconButton.Text = "evaluateIconButton";
+            this.evaluateIconButton.Click += new System.EventHandler(this.evaluateIconButton_Click);
+            // 
+            // copyButton
+            // 
+            this.copyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copyButton.Image = global::Circuits.Properties.Resources.CopyIcon;
+            this.copyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(29, 28);
+            this.copyButton.Text = "copyButton";
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
             // Form1
             // 
@@ -134,6 +158,8 @@
         private System.Windows.Forms.ToolStripButton notIconButton;
         private System.Windows.Forms.ToolStripButton inputIconButton;
         private System.Windows.Forms.ToolStripButton outputIconButton;
+        private System.Windows.Forms.ToolStripButton evaluateIconButton;
+        private System.Windows.Forms.ToolStripButton copyButton;
     }
 }
 

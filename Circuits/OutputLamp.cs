@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Circuits
 {
@@ -89,6 +90,37 @@ namespace Circuits
             // must move the pins too
             pins[0].X = x - GAP;    //Input pin
             pins[0].Y = y + 8;
+        }
+
+        /// <summary>
+        /// Evaluate its input pin, set on/off bool var to result.
+        /// </summary>
+        public override bool Evaluate()
+        {
+            //If input pin is not connected to wire, return false.
+            if (pins[0].InputWire == null)
+            {
+                //Display error message.
+                MessageBox.Show("Error: The Output lamp is not connected to a wire.");
+                return false;
+            }
+
+            //If pin evaluates to true
+            Gate gate = pins[0].InputWire.FromPin.Owner;
+            //Set on/off status to result and return.
+            OnOffStatus = gate.Evaluate();
+            return OnOffStatus;
+        }
+
+        /// <summary>
+        /// Clones the output lamp.
+        /// </summary>
+        /// <returns>Fresh copy of the output lamp.</returns>
+        public override Gate Clone()
+        {
+            //Create a copy of OutputLamp and return.
+            OutputLamp copyOutputLamp = new OutputLamp(left, top);
+            return copyOutputLamp;
         }
     }
 }

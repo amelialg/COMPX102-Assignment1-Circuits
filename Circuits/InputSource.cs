@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Circuits
 {
@@ -105,6 +106,26 @@ namespace Circuits
             // must move the pins too
             pins[0].X = x + 20;    //Output pin
             pins[0].Y = y + 9;
+        }
+
+        /// <summary>
+        /// Get the status of the output voltage..
+        /// </summary>
+        public override bool Evaluate()
+        {
+            //Return output voltage (true/false)
+            return outputVoltage;
+        }
+
+        /// <summary>
+        /// Clones the input source.
+        /// </summary>
+        /// <returns>Fresh copy of the input source.</returns>
+        public override Gate Clone()
+        {
+            //Create a copy of InputSource and return.
+            InputSource copyInputSource = new InputSource(left, top);
+            return copyInputSource;
         }
     }
 }

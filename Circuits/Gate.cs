@@ -100,7 +100,18 @@ namespace Circuits
         /// <param name="x">The x position to move the gate to</param>
         /// <param name="y">The y position to move the gate to</param>
         public abstract void MoveTo(int x, int y);
-        
+
+        /// <summary>
+        /// Compute the correct logical result for that kind of gate.
+        /// </summary>
+        /// <returns>Boolean variable as result</returns>
+        public abstract bool Evaluate();
+
+        /// <summary>
+        /// Makes a copy of that kind of gate (including each of its pins).
+        /// </summary>
+        /// <returns>Fresh copy of the gate</returns>
+        public abstract Gate Clone();
 
     }
 }

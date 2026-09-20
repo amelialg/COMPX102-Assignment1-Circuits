@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Circuits
 {
@@ -78,6 +79,36 @@ namespace Circuits
             pins[0].Y = y + HEIGHT/2 + GAP/2;
             pins[1].X = x + WIDTH + GAP*2;    //Output pin
             pins[1].Y = y + HEIGHT/2 + GAP/2;
+        }
+
+        /// <summary>
+        /// Evaluate if input pin and return the opposite bool var.
+        /// </summary>
+        /// <returns>The opposite of input pin evaluation.</returns>
+        public override bool Evaluate()
+        {
+            //If input pin is not connected to wire, return false.
+            if (pins[0].InputWire == null )
+            {
+                //Display error message.
+                MessageBox.Show("Error: The NOT gate input pin is not connected to a wire.");
+                return false;
+            }
+
+            //If input evaluates true, return false. Otherwise return true.
+            Gate gate = pins[0].InputWire.FromPin.Owner;
+            return !gate.Evaluate();
+        }
+
+        /// <summary>
+        /// Clones the NOT gate.
+        /// </summary>
+        /// <returns>Fresh copy of the NOT gate.</returns>
+        public override Gate Clone()
+        {
+            //Create a copy of not gate and return.
+            NotGate copyNotGate = new NotGate(left, top);
+            return copyNotGate;
         }
     }
 }
