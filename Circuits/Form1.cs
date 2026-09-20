@@ -72,6 +72,11 @@ namespace Circuits
         /// </summary>
         protected Gate newGate = null;
 
+        /// <summary>
+        /// Stores the new compound (instance variable).
+        /// </summary>
+        protected Gate newCompound;
+
         public Form1()
         {
             InitializeComponent();
@@ -313,6 +318,43 @@ namespace Circuits
         }
 
         /// <summary>
+        /// Creates a new empty compound gate. Store it in newCoumpound var.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void startGroupButton_Click(object sender, EventArgs e)
+        {
+            //Create new empty compound gate.
+            newGate = new Compound(0, 0);
+            //Store in a new instance variable newCompound.
+            newCompound = newGate;
+
+            while (newCompound != null)
+            {
+                //If gate is selected
+                if (current != null)
+                {
+                    //Add gate to newCoumpound object.
+                    newCompound = current;
+                }
+            }
+               
+        }
+
+        /// <summary>
+        /// Moves newCompound into newGate and resets newCompound to null.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void endCompoundButton_Click(object sender, EventArgs e)
+        {
+            //Move new compound into new gate.
+            newGate = newCompound;
+            //Reset new compound to null.
+            newCompound = null;
+        }
+
+        /// <summary>
         /// Handles events while the mouse button is pressed down.
         /// </summary>
         /// <param name="sender"></param>
@@ -366,6 +408,13 @@ namespace Circuits
                     {
                         g.Selected = true;
                         current = g;
+                        //Check if gate is input source
+                        if (g is InputSource)
+                        {
+                            //Assign inputsource as current gate.
+                            InputSource input = g as InputSource;
+                            input.ToggleInputSource();
+                        }
                         this.Invalidate();
                         break;
                     }

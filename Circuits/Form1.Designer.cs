@@ -36,6 +36,8 @@
             this.outputIconButton = new System.Windows.Forms.ToolStripButton();
             this.evaluateIconButton = new System.Windows.Forms.ToolStripButton();
             this.copyButton = new System.Windows.Forms.ToolStripButton();
+            this.startGroupButton = new System.Windows.Forms.ToolStripButton();
+            this.endCompoundButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,9 @@
             this.inputIconButton,
             this.outputIconButton,
             this.evaluateIconButton,
-            this.copyButton});
+            this.copyButton,
+            this.startGroupButton,
+            this.endCompoundButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1344, 31);
@@ -127,6 +131,26 @@
             this.copyButton.Text = "copyButton";
             this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
+            // startGroupButton
+            // 
+            this.startGroupButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.startGroupButton.Image = global::Circuits.Properties.Resources.StartCompoundIcon;
+            this.startGroupButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.startGroupButton.Name = "startGroupButton";
+            this.startGroupButton.Size = new System.Drawing.Size(29, 28);
+            this.startGroupButton.Text = "startGroupButton";
+            this.startGroupButton.Click += new System.EventHandler(this.startGroupButton_Click);
+            // 
+            // endCompoundButton
+            // 
+            this.endCompoundButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.endCompoundButton.Image = global::Circuits.Properties.Resources.EndCompoundIcon;
+            this.endCompoundButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.endCompoundButton.Name = "endCompoundButton";
+            this.endCompoundButton.Size = new System.Drawing.Size(29, 28);
+            this.endCompoundButton.Text = "endCompoundButton";
+            this.endCompoundButton.Click += new System.EventHandler(this.endCompoundButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -160,6 +184,8 @@
         private System.Windows.Forms.ToolStripButton outputIconButton;
         private System.Windows.Forms.ToolStripButton evaluateIconButton;
         private System.Windows.Forms.ToolStripButton copyButton;
+        private System.Windows.Forms.ToolStripButton startGroupButton;
+        private System.Windows.Forms.ToolStripButton endCompoundButton;
     }
 }
 

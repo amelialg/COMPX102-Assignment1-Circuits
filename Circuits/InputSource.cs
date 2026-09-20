@@ -53,6 +53,34 @@ namespace Circuits
             //Draw the gate with image from resources
             paper.DrawImage(Properties.Resources.InputIcon, Left, Top);
 
+            ////Each time InputSource is selected, boolean value should toggle.
+            ////selecting it once changes the boolean value from false to true
+            //if (selected == true)
+            //{
+            //    //high voltage (true) 
+            //    outputVoltage = !outputVoltage;
+            //}
+            //// selecting it again changes it from true back to false.
+            //else
+            //{
+            //    selected = false; //zero voltage (false)
+            //}
+
+            //Check whether output pin is high voltage (true) or zero voltage (false)
+            if (outputVoltage == true)
+            {
+                //Make gate a different colour when its boolean value is high (true)
+                brush = highVoltageBrush;
+                paper.FillRectangle(brush, Left, Top, 15, 15);
+            }
+
+        }
+
+        /// <summary>
+        /// Toggle the input source.
+        /// </summary>
+        public void ToggleInputSource()
+        {
             //Each time InputSource is selected, boolean value should toggle.
             //selecting it once changes the boolean value from false to true
             if (selected == true)
@@ -65,15 +93,6 @@ namespace Circuits
             {
                 selected = false; //zero voltage (false)
             }
-
-            //Check whether output pin is high voltage (true) or zero voltage (false)
-            if (outputVoltage == true)
-            {
-                //Make gate a different colour when its boolean value is high (true)
-                brush = highVoltageBrush;
-                paper.FillRectangle(brush, Left, Top, 15, 15);
-            }
-
         }
 
         /// <summary>
