@@ -325,7 +325,7 @@ namespace Circuits
         private void startGroupButton_Click(object sender, EventArgs e)
         {
             //Create new empty compound gate.
-            newGate = new Compound(0, 0);
+            newGate = new Compound(this.Width, this.Height);
             //Store in a new instance variable newCompound.
             newCompound = newGate;
 
@@ -350,8 +350,18 @@ namespace Circuits
         {
             //Move new compound into new gate.
             newGate = newCompound;
+            //Set current gate to newcompound gate.
+            current = newCompound;
             //Reset new compound to null.
             newCompound = null;
+
+            //Loop through all the gates in the remove list.
+            //{
+                //Remove those gates from the gates in the form.
+                //gatesList.Remove();
+                //Clear the remove list and make it empty.
+                //removeList.Clear();
+            //}
         }
 
         /// <summary>

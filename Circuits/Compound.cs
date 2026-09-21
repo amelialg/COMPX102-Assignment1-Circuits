@@ -29,6 +29,18 @@ namespace Circuits
         {
             //Add gate to gates object list.
             gateObjectsList.Add(g);
+            //If g.Left < Left THEN..
+            if (g.Left < Left)
+            {
+                //Make left of the compound gate = g.Left
+                left = g.Left;
+            }
+            //If g.Top < top THEN...
+            if (g.Top < Top)
+            {
+                //Make top of the compound gate = g.Top
+                top = g.Top;
+            }
             //Test its in the list.
             MessageBox.Show(gateObjectsList.ToString());
         }
@@ -92,6 +104,25 @@ namespace Circuits
             pins[1].Y = y + HEIGHT;
             pins[2].X = x + WIDTH + (GAP * 2);    //Output pin
             pins[2].Y = y + HEIGHT - GAP - 5;
+
+            //Calculate distance of x - left of compound gate.
+            int xDistance = x - left;
+            //Calculate distance of y-left of compound gate.
+            int yDistance = y - left;
+
+            //Make left and top of the compound gate to the x and y.
+
+
+            //Foreach gate in the gate list.
+            foreach (Gate g in gateObjectsList)
+            {
+                //Move the left of the current gate to the left of gate + the x distance.
+                //g.left += xDistance; 
+
+                //The op of the current gate + the y distance.
+
+                
+            }
         }
 
         /// <summary>
