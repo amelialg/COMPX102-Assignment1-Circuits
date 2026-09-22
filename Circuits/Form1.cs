@@ -14,18 +14,22 @@ namespace Circuits
 {
 
     //1) Is it a better idea to fully document the Gate class or the AndGate subclass? Can you inherit comments? 
-    //The Gate class is more important, as you can inherit comments
+    //Fully documenting the Gate class is more important, as you can inherit comments (XML ///).
 
     // 2) What is the advantage of making a method abstract in the superclass
-    // rather than just writing a virtual method with no code in the body of the method?
+    //    rather than just writing a virtual method with no code in the body of the method?
+    //The advantage of making a method abstract is that you can change (override) it to suit each different subclass
+    //and it is required to override in each subclass, whereas virtual methods do not have to be overrided. 
 
     // Is there any disadvantage to an abstract method? 
-
+    //A disadvantage of abstract method is that you have to implement the code in every subclass even if they are the same.
+    
     //3) If a class has an abstract method in it, does the class have to be abstract? 
+    //The super class has to be abstract however the subclasses don't have to be.
 
     //4) What would happen in your program if one of the gates added to your Compound Gate is another Compound Gate?
-
-    //Is your design robust enough to cope with this situation?
+    //
+    //   Is your design robust enough to cope with this situation?
 
 
     /// <summary>
@@ -75,7 +79,7 @@ namespace Circuits
         /// <summary>
         /// Stores the new compound (instance variable).
         /// </summary>
-        protected Gate newCompound;
+        protected Compound newCompound = null;
 
         public Form1()
         {
@@ -223,7 +227,7 @@ namespace Circuits
             }
             if (newGate != null)
             {
-                // show the gate that we are dragging into the circuit
+                //Show the gate that we are dragging into the circuit
                 newGate.MoveTo(currentX, currentY);
                 newGate.Draw(e.Graphics);
             }
@@ -324,21 +328,9 @@ namespace Circuits
         /// <param name="e"></param>
         private void startGroupButton_Click(object sender, EventArgs e)
         {
-            //Create new empty compound gate.
-            newGate = new Compound(this.Width, this.Height);
-            //Store in a new instance variable newCompound.
-            newCompound = newGate;
-
-            while (newCompound != null)
-            {
-                //If gate is selected
-                if (current != null)
-                {
-                    //Add gate to newCoumpound object.
-                    newCompound = current;
-                }
-            }
-               
+            //Create new empty compound gate and Store in a new instance variable newCompound.
+            newCompound = new Compound(this.Width, this.Height);
+                         
         }
 
         /// <summary>
@@ -352,6 +344,7 @@ namespace Circuits
             newGate = newCompound;
             //Set current gate to newcompound gate.
             current = newCompound;
+
             //Reset new compound to null.
             newCompound = null;
 
@@ -418,6 +411,14 @@ namespace Circuits
                     {
                         g.Selected = true;
                         current = g;
+
+                        //If a Gate is selected while newCompound is non-null, that gate is added into the newCompound object.
+                        if (newCompound != null && current != null)
+                        {
+                            //Add gate to newCoumpound object.                            
+                            newCompound.gateObjectsList.Add(current);                            
+                        }
+
                         //Check if gate is input source
                         if (g is InputSource)
                         {

@@ -11,7 +11,25 @@ namespace Circuits
     public class Compound : Gate
     {
         //List of all gate objects.
-        List<Gate> gateObjectsList = new List<Gate>();
+        public List<Gate> gateObjectsList = new List<Gate>();
+
+        /// <summary>
+        /// Gets the left hand edge of the gate.
+        /// </summary>
+        public override int Left
+        {
+            get { return left; }
+            set { left = value; }
+        }
+
+        /// <summary>
+        /// Gets the top edge of the gate.
+        /// </summary>
+        public override int Top
+        {
+            get { return top; }
+            set { top = value; }
+        }
 
         /// <summary>
         /// Constructor to initalise values passed in.
@@ -29,17 +47,18 @@ namespace Circuits
         {
             //Add gate to gates object list.
             gateObjectsList.Add(g);
-            //If g.Left < Left THEN..
+
+            //If g.Left < Left THEN...
             if (g.Left < Left)
             {
                 //Make left of the compound gate = g.Left
-                left = g.Left;
+                Left = g.Left;
             }
             //If g.Top < top THEN...
             if (g.Top < Top)
             {
                 //Make top of the compound gate = g.Top
-                top = g.Top;
+                Top = g.Top;
             }
             //Test its in the list.
             MessageBox.Show(gateObjectsList.ToString());
@@ -67,6 +86,7 @@ namespace Circuits
         public override void Draw(Graphics paper)
         {
             Brush brush;
+            
             //Check if the gate has been selected
             if (selected)
             {
@@ -76,13 +96,10 @@ namespace Circuits
             {
                 brush = normalBrush;
             }
-            //Draw each of the pins
-            foreach (Pin p in pins)
-                p.Draw(paper);
 
-            paper.DrawImage(Properties.Resources.AndGate, Left, Top);
-
-
+            //TESTING Left and Top Coordinates
+            Pen pen = new Pen(Color.Red);
+            paper.DrawRectangle(pen, Left, Top, 20, 20);
         }
 
         /// <summary>
@@ -94,33 +111,25 @@ namespace Circuits
         {
             //Debugging message
             Console.WriteLine("pins = " + pins.Count);
-            //Set the position of the gate to the values passed in
-            left = x;
-            top = y;
-            // must move the pins too
-            pins[0].X = x - GAP;    //Input pin 1
-            pins[0].Y = y + GAP;
-            pins[1].X = x - GAP;    //Input pin 2
-            pins[1].Y = y + HEIGHT;
-            pins[2].X = x + WIDTH + (GAP * 2);    //Output pin
-            pins[2].Y = y + HEIGHT - GAP - 5;
 
             //Calculate distance of x - left of compound gate.
-            int xDistance = x - left;
+            int xDistance = x - Left;
             //Calculate distance of y-left of compound gate.
-            int yDistance = y - left;
+            int yDistance = y - Top;
 
-            //Make left and top of the compound gate to the x and y.
+            //Set the position of the compound gate to the values passed in
+            //Make left and top of the compound gate to the x and y
+            Left = x; //set left of compound gate to x passed in (mouse click x)
+            Top = y;  
 
 
+            //Move the gates (w/pins too)
             //Foreach gate in the gate list.
             foreach (Gate g in gateObjectsList)
             {
-                //Move the left of the current gate to the left of gate + the x distance.
-                //g.left += xDistance; 
-
-                //The op of the current gate + the y distance.
-
+                //Move the left of the current gate to the left of gate + the x distance,
+                //Move the top of the current gate + the y distance.
+                g.MoveTo(g.Left + xDistance, g.Top + yDistance);
                 
             }
         }

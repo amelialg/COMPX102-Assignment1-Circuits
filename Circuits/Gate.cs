@@ -58,17 +58,19 @@ namespace Circuits
         /// <summary>
         /// Gets the left hand edge of the gate.
         /// </summary>
-        public int Left
+        public virtual int Left
         {
             get { return left; }
+            set { }
         }
 
         /// <summary>
         /// Gets the top edge of the gate.
         /// </summary>
-        public int Top
+        public virtual int Top
         {
             get { return top; }
+            set { }
         }
 
         /// <summary>
