@@ -49,7 +49,7 @@ namespace Circuits
         /// <summary>
         /// Gets and sets whether the gate is selected or not.
         /// </summary>
-        public bool Selected
+        public virtual bool Selected
         {
             get { return selected; }
             set { selected = value; }

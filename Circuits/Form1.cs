@@ -334,7 +334,7 @@ namespace Circuits
         private void startGroupButton_Click(object sender, EventArgs e)
         {
             //Create new empty compound gate and Store in a new instance variable newCompound.
-            newCompound = new Compound(this.Width, this.Height);
+            newCompound = new Compound(Left, Top);
                          
         }
 
@@ -348,7 +348,9 @@ namespace Circuits
             //Move new compound into new gate.
             newGate = newCompound;
             //Set current gate to newcompound gate.
-            current = newCompound;
+            current = newGate;
+
+            //gatesList.Add(newCompound);
 
             //Reset new compound to null.
             newCompound = null;
@@ -421,16 +423,15 @@ namespace Circuits
                         //If a Gate is selected while newCompound is non-null, that gate is added into the newCompound object.
                         if (newCompound != null && current != null)
                         {
-                            newCompound.Left = e.X;
-                            newCompound.Top = e.Y;
-
+                            //newCompound.Left = Left;
+                            //newCompound.Top = Top;
 
                             //Add gate to newCoumpound object.                            
                             newCompound.gateObjectsList.Add(current);
 
                             //Add the gates to remove list
                             removeGateList.Add(g);
-                            
+                            this.Invalidate();  
                         }
 
                         //Check if gate is input source

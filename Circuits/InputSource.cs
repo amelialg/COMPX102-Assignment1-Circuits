@@ -107,7 +107,7 @@ namespace Circuits
         public override void MoveTo(int x, int y)
         {
             //Debugging message
-            Console.WriteLine("pins = " + pins.Count);
+            //Console.WriteLine("pins = " + pins.Count);
             //Set the position of the gate to the values passed in
             left = x;
             top = y;

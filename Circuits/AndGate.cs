@@ -68,6 +68,9 @@ namespace Circuits
                 //Draw the gate using provided image.
                 paper.DrawImage(Properties.Resources.AndGate, Left, Top);
             }
+
+            Pen pen = new Pen(Color.Red);
+            paper.DrawRectangle(pen, Left, Top, 20, 20);
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace Circuits
         public override void MoveTo(int x, int y)
         {
             //Debugging message
-            Console.WriteLine("pins = " + pins.Count);
+            //Console.WriteLine("pins = " + pins.Count);
             //Set the position of the gate to the values passed in
             left = x;
             top = y;

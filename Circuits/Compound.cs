@@ -31,6 +31,25 @@ namespace Circuits
             set { top = value; }
         }
 
+        public override bool Selected
+        {
+            get { return selected; }
+            set 
+            { 
+                if (selected != value)
+                {
+                    //Set selected to value
+                    selected = value;
+                    //Foreach gate in compound gate list.
+                    foreach(Gate g in gateObjectsList)
+                    {
+                        g.Selected = value;
+                    }
+                }
+            }
+
+        }
+
         /// <summary>
         /// Constructor to initalise values passed in.
         /// </summary>
@@ -38,6 +57,7 @@ namespace Circuits
         /// <param name=""></param>
         public Compound(int x, int y) : base(x, y)
         {
+            MoveTo(x, y);
         }
 
         /// <summary>
@@ -60,8 +80,6 @@ namespace Circuits
                 //Make top of the compound gate = g.Top
                 Top = g.Top;
             }
-            //Test its in the list.
-            MessageBox.Show(gateObjectsList.ToString());
         }
 
         /// <summary>
@@ -72,12 +90,20 @@ namespace Circuits
         /// <returns>True if the mouse click position is inside the gate</returns>
         public override bool IsMouseOn(int x, int y)
         {
-            if (left <= x && x < left + WIDTH
-                && top <= y && y < top + HEIGHT)
-                return true;
-            else
-                return false;
-        }
+            //Check if mouse is on the child gates 
+            foreach (Gate g in gateObjectsList)
+            {
+                Console.WriteLine(g.Selected);
+                if (g.IsMouseOn(x, y))
+                {
+                    Selected = !Selected;
+                    return true;
+                }
+            }
+
+            return false;
+                 
+         }
 
         /// <summary>
         /// Draws the compound gate in the normal colour or in the selected colour from the gateOject list.
@@ -102,6 +128,9 @@ namespace Circuits
                 g.Draw(paper);
  
             }
+
+            Pen pen = new Pen(Color.Red);
+            paper.DrawRectangle(pen, Left, Top, 20, 20);
         }
 
         /// <summary>
@@ -112,7 +141,7 @@ namespace Circuits
         public override void MoveTo(int x, int y)
         {
             //Debugging message
-            Console.WriteLine("pins = " + pins.Count);
+            //Console.WriteLine("pins = " + pins.Count);
 
             //Calculate distance of x - left of compound gate.
             int xDistance = x - Left;
@@ -133,12 +162,6 @@ namespace Circuits
                 //Move the top of the current gate + the y distance.
                 g.MoveTo(g.Left + xDistance, g.Top + yDistance);
                 
-            }
-
-            //Move the whole compound gate group if one gate in the compound is selected
-            if (selected == true)
-            { 
-                MoveTo(x, y);
             }
         }
 
@@ -163,14 +186,20 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Clones the AND gate.
+        /// Clones the compound gate.
         /// </summary>
         /// <returns>Fresh copy of the AND gate.</returns>
         public override Gate Clone()
         {
             //Create a copy of and gate and return.
-            AndGate copyAndGate = new AndGate(left, top);
-            return copyAndGate;
+            Compound copyCompoundGate = new Compound(Left, Top);
+            foreach (Gate g in gateObjectsList)
+            {
+                Gate cloned = (Gate) g.Clone();
+                //Add gate to new compound.
+                copyCompoundGate.AddGate(cloned);
+            }
+            return copyCompoundGate;
         }
     }
 }
