@@ -39,6 +39,8 @@ namespace Circuits
             if (selected)
             {
                 brush = selectedBrush;
+                // Makes the input source red when selected.
+                paper.FillRectangle(brush, Left, Top, 15, 15);
             }
             else
             {

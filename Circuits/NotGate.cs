@@ -29,22 +29,23 @@ namespace Circuits
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
-            Brush brush;
+            //Draw each of the pins
+            foreach (Pin p in pins)
+            {
+                p.Draw(paper);
+            }
+
             //Check if the gate has been selected
             if (selected)
             {
-                brush = selectedBrush;
+                //Draw the selected red gate with image from resources
+                paper.DrawImage(Properties.Resources.NotGateRed, Left, Top);
             }
             else
             {
-                brush = normalBrush;
+                //Draw the gate with image from resources
+                paper.DrawImage(Properties.Resources.NotGate, Left, Top);
             }
-            //Draw each of the pins
-            foreach (Pin p in pins)
-                p.Draw(paper);
-
-            //Draw the gate with image from resources
-            paper.DrawImage(Properties.Resources.NotGate, Left, Top);
         }
 
         /// <summary>
