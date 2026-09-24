@@ -62,6 +62,11 @@ namespace Circuits
         protected List<Gate> gatesList = new List<Gate>();
 
         /// <summary>
+        /// A list for removing the gates (in a compound gate) from the gateslist
+        /// </summary>
+        protected List<Gate> removeGateList = new List<Gate>();
+
+        /// <summary>
         /// The set of connector wires in the circuit
         /// </summary>
         protected List<Wire> wiresList = new List<Wire>();
@@ -349,12 +354,13 @@ namespace Circuits
             newCompound = null;
 
             //Loop through all the gates in the remove list.
-            //{
+            foreach (Gate g in removeGateList)
+            {
                 //Remove those gates from the gates in the form.
-                //gatesList.Remove();
-                //Clear the remove list and make it empty.
-                //removeList.Clear();
-            //}
+                gatesList.Remove(g);
+            }
+            //Clear the remove list and make it empty.
+            removeGateList.Clear();
         }
 
         /// <summary>
@@ -396,7 +402,7 @@ namespace Circuits
             }
             // See if we are inserting a new gate
             if (newGate != null)
-            {
+            {             
                 newGate.MoveTo(e.X, e.Y);
                 gatesList.Add(newGate);
                 newGate = null;
@@ -415,8 +421,16 @@ namespace Circuits
                         //If a Gate is selected while newCompound is non-null, that gate is added into the newCompound object.
                         if (newCompound != null && current != null)
                         {
+                            newCompound.Left = e.X;
+                            newCompound.Top = e.Y;
+
+
                             //Add gate to newCoumpound object.                            
-                            newCompound.gateObjectsList.Add(current);                            
+                            newCompound.gateObjectsList.Add(current);
+
+                            //Add the gates to remove list
+                            removeGateList.Add(g);
+                            
                         }
 
                         //Check if gate is input source

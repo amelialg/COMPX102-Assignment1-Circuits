@@ -97,9 +97,11 @@ namespace Circuits
                 brush = normalBrush;
             }
 
-            //TESTING Left and Top Coordinates
-            Pen pen = new Pen(Color.Red);
-            paper.DrawRectangle(pen, Left, Top, 20, 20);
+            foreach (Gate g in gateObjectsList)
+            {
+                g.Draw(paper);
+ 
+            }
         }
 
         /// <summary>
@@ -131,6 +133,12 @@ namespace Circuits
                 //Move the top of the current gate + the y distance.
                 g.MoveTo(g.Left + xDistance, g.Top + yDistance);
                 
+            }
+
+            //Move the whole compound gate group if one gate in the compound is selected
+            if (selected == true)
+            { 
+                MoveTo(x, y);
             }
         }
 
