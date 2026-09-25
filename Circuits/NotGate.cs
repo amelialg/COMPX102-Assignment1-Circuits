@@ -11,8 +11,10 @@ namespace Circuits
     public class NotGate : Gate
     {
         /// <summary>
-        /// Constructor to initialise the objects passed in.
+        /// Constructor to initialise values passed in.
         /// </summary>
+        /// <param name="x">x position of the gate.</param>
+        /// <param name="y">x position of the gate.</param>
         public NotGate(int x, int y) : base(x, y)
         {
             //Add the input pin to the gate
@@ -85,7 +87,7 @@ namespace Circuits
         /// <summary>
         /// Evaluate if input pin and return the opposite bool var.
         /// </summary>
-        /// <returns>The opposite of input pin evaluation.</returns>
+        /// <returns>The opposite of input pin evaluation (true/false).</returns>
         public override bool Evaluate()
         {
             //If input pin is not connected to wire, return false.

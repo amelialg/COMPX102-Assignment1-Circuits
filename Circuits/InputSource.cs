@@ -18,7 +18,11 @@ namespace Circuits
         //Boolean variable for output voltage
         protected bool outputVoltage = false;
 
-        //Constructor
+        /// <summary>
+        /// Constructor to initialise values passed in.
+        /// </summary>
+        /// <param name="x">x position of the gate.</param>
+        /// <param name="y">y position of the gate.</param>
         public InputSource (int x, int y) : base (x, y) 
         {
             //Add the output pin to the gate
@@ -33,17 +37,20 @@ namespace Circuits
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
+            //Declare brush object.
             Brush brush;
 
             //Check if the gate has been selected
             if (selected)
             {
+                //Set brush to selected brush colour.
                 brush = selectedBrush;
                 // Makes the input source red when selected.
-                paper.FillRectangle(brush, Left, Top, 15, 15);
+                paper.FillRectangle(brush, Left - 3, Top - 1/2, 20, 20);
             }
             else
             {
+                //Set brush to normal brush colour.
                 brush = normalBrush;
             }
             //Draw each of the pins
@@ -60,6 +67,7 @@ namespace Circuits
             {
                 //Make gate a different colour when its boolean value is high (true)
                 brush = highVoltageBrush;
+                //Draw the input source green, indicates on.
                 paper.FillRectangle(brush, Left, Top, 15, 15);
             }
 

@@ -13,6 +13,8 @@ namespace Circuits
         /// <summary>
         /// Constructor to initialise the objects passed in.
         /// </summary>
+        /// <param name="x">x position of gate.</param>
+        /// <param name="y">y position of gate.</param>
         public OrGate(int x, int y) : base (x, y)
         {
             //Add the two input pins to the gate
@@ -24,6 +26,10 @@ namespace Circuits
             MoveTo(x, y);
         }
 
+        /// <summary>
+        /// Override the draw method to draw OR gate.
+        /// </summary>
+        /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
             //Draw each of the pins
@@ -84,7 +90,7 @@ namespace Circuits
         /// <summary>
         /// Evaluate if one input pin is true, otherwise return false.
         /// </summary>
-        /// <returns>Input pin evaluation.</returns>
+        /// <returns>Input pin evaluation (true/false).</returns>
         public override bool Evaluate()
         {
             //If input pin is not connected to wire, return false.

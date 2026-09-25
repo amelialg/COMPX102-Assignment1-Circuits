@@ -10,14 +10,17 @@ namespace Circuits
 {
     public class OutputLamp : Gate
     {
-        //ON brush
+        //Brush to indicate off status via gray colour.
         protected Brush OFFBrush = Brushes.DarkSlateGray;
 
         //Boolean variable for current on/off status
         protected bool OnOffStatus = false;
 
-
-        //Constructor
+        /// <summary>
+        /// Constructor to intialise values passed in.
+        /// </summary>
+        /// <param name="x">x position of the gate.</param>
+        /// <param name="y">y position of the gate.</param>
         public OutputLamp(int x, int y) : base (x, y)
         {
             //Add the input pin to the gate
@@ -32,14 +35,20 @@ namespace Circuits
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
+            //Create brush object.
             Brush brush;
+
             //Check if the gate has been selected
             if (selected)
             {
+                //Set brush to selected brush colour red.
                 brush = selectedBrush;
+                // Makes the input source red when selected.
+                paper.FillRectangle(brush, Left - 3, Top - 2, 20, 20);
             }
             else
             {
+                //Set brush to deselected normal brush colour.
                 brush = normalBrush;
             }
             //Draw each of the pins
@@ -54,7 +63,7 @@ namespace Circuits
             }
             else
             {
-                //Dark when it is false
+                //Dark when it is false.
                 brush = OFFBrush;
                 paper.FillEllipse(brush, Left, Top, 15, 15);
             }
@@ -95,6 +104,7 @@ namespace Circuits
         /// <summary>
         /// Evaluate its input pin, set on/off bool var to result.
         /// </summary>
+        /// <returns>Input pin evaluation (true/false)/returns>
         public override bool Evaluate()
         {
             //If input pin is not connected to wire, return false.

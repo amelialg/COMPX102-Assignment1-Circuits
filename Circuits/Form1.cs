@@ -28,8 +28,8 @@ namespace Circuits
     //The super class has to be abstract however the subclasses don't have to be.
 
     //4) What would happen in your program if one of the gates added to your Compound Gate is another Compound Gate?
-    //
-    //   Is your design robust enough to cope with this situation?
+    //The two compound gates become one new compound gate.
+    //   Is your design robust enough to cope with this situation? Yes and the wires also copy, it doesn't break.
 
 
     /// <summary>
@@ -101,8 +101,10 @@ namespace Circuits
         /// <returns>The pin that has been selected</returns>
         public Pin findPin(int x, int y)
         {
+            //For each gate in the gates list.
             foreach (Gate g in gatesList)
             {
+                //For each pin in current gates pins.
                 foreach (Pin p in g.Pins)
                 {
                     if (p.isMouseOn(x, y))
@@ -121,7 +123,9 @@ namespace Circuits
         {
             if (startPin != null)
             {
+                //Display wire location.
                 Console.WriteLine("wire from " + startPin + " to " + e.X + "," + e.Y);
+                //Set current x, y position to mouse position.
                 currentX = e.X;
                 currentY = e.Y;
                 this.Invalidate();  // this will draw the line
@@ -153,6 +157,7 @@ namespace Circuits
                 Pin endPin = findPin(e.X, e.Y);
                 if (endPin != null)
                 {
+                    //Display wire connection.
                     Console.WriteLine("Trying to connect " + startPin + " to " + endPin);
                     Pin input, output;
                     if (startPin.IsOutput)
@@ -169,6 +174,7 @@ namespace Circuits
                     {
                         if (input.InputWire == null)
                         {
+                            //Create new wire object.
                             Wire newWire = new Wire(output, input);
                             input.InputWire = newWire;
                             wiresList.Add(newWire);
@@ -273,7 +279,7 @@ namespace Circuits
         {
             //Creates an instance of that subclass, assigns to new gate variable.
             newGate = new InputSource(0, 0);
-            //Assign the not gate object to the current gate variable.
+            //Assign the input object to the current gate variable.
             current = newGate;
         }
 
@@ -286,7 +292,7 @@ namespace Circuits
         {
             //Creates an instance of that subclass, assigns to new gate variable.
             newGate = new OutputLamp(0, 0);
-            //Assign the not gate object to the current gate variable.
+            //Assign the output object to the current gate variable.
             current = newGate;
         }
 
@@ -321,7 +327,7 @@ namespace Circuits
             //If a gate is selected.
             if (current != null)
             {
-                //Set current gate to new gate.
+                //Set new gate to clone of current gate.
                 newGate = current.Clone();
             }
         }
@@ -333,9 +339,8 @@ namespace Circuits
         /// <param name="e"></param>
         private void startGroupButton_Click(object sender, EventArgs e)
         {
-            //Create new empty compound gate and Store in a new instance variable newCompound.
-            newCompound = new Compound(Left, Top);
-                         
+            //Create new empty compound gate and store in a new instance variable newCompound.
+            newCompound = new Compound(Left, Top);  
         }
 
         /// <summary>
@@ -350,18 +355,16 @@ namespace Circuits
             //Set current gate to newcompound gate.
             current = newGate;
 
-            //gatesList.Add(newCompound);
-
             //Reset new compound to null.
             newCompound = null;
 
             //Loop through all the gates in the remove list.
             foreach (Gate g in removeGateList)
             {
-                //Remove those gates from the gates in the form.
+                //Remove those gates from the gates list in the form.
                 gatesList.Remove(g);
             }
-            //Clear the remove list and make it empty.
+            //Clear the remove list to make it empty.
             removeGateList.Clear();
         }
 
@@ -404,7 +407,8 @@ namespace Circuits
             }
             // See if we are inserting a new gate
             if (newGate != null)
-            {             
+            {    
+                //Move new gate to mouse position and add to gates list.
                 newGate.MoveTo(e.X, e.Y);
                 gatesList.Add(newGate);
                 newGate = null;
@@ -417,15 +421,13 @@ namespace Circuits
                 {
                     if (g.IsMouseOn(e.X, e.Y))
                     {
+                        //Set current gate to selected.
                         g.Selected = true;
                         current = g;
 
                         //If a Gate is selected while newCompound is non-null, that gate is added into the newCompound object.
                         if (newCompound != null && current != null)
                         {
-                            //newCompound.Left = Left;
-                            //newCompound.Top = Top;
-
                             //Add gate to newCoumpound object.                            
                             newCompound.gateObjectsList.Add(current);
 

@@ -17,10 +17,8 @@ namespace Circuits
         /// <param name="y"></param>
         public Gate (int x, int y)
         {
-
         }
 
-        //Make them Virtual...?
         // left is the left-hand edge of the main part of the gate.
         // So the input pins are further left than left.
         protected int left;
@@ -28,14 +26,18 @@ namespace Circuits
         // top is the top of the whole gate
         protected int top;
 
-        // width and height of the main part of the gate
+        //Width of the main part of the gate
         protected const int WIDTH = 40;
+        //Height of the main part of the gate.
         protected const int HEIGHT = 40;
-        // length of the connector legs sticking out left and right
+        //Length of the connector legs sticking out left and right
         protected const int GAP = 10;
-
+        //Selected colour of the brush (red).
         protected Brush selectedBrush = Brushes.Red;
+        //Deselected normal colour of the brush (light gray).
         protected Brush normalBrush = Brushes.LightGray;
+        //Has the gate been selected
+        protected bool selected = false;
 
         /// <summary>
         /// This is the list of all the pins of this gate.
@@ -43,8 +45,6 @@ namespace Circuits
         /// and one output pin (number 2).
         /// </summary>
         protected List<Pin> pins = new List<Pin>();
-        //Has the gate been selected
-        protected bool selected = false;
 
         /// <summary>
         /// Gets and sets whether the gate is selected or not.
@@ -56,21 +56,21 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Gets the left hand edge of the gate.
+        /// Gets and sets the left hand edge of the gate.
         /// </summary>
         public virtual int Left
         {
             get { return left; }
-            set { }
+            set { left = value; }
         }
 
         /// <summary>
-        /// Gets the top edge of the gate.
+        /// Gets and sets the top edge of the gate.
         /// </summary>
         public virtual int Top
         {
             get { return top; }
-            set { }
+            set { top = value; }
         }
 
         /// <summary>
@@ -94,7 +94,6 @@ namespace Circuits
         /// </summary>
         /// <param name="paper"></param>
         public abstract void Draw(Graphics paper);
-
 
         /// <summary>
         /// Moves the gate to the position specified.

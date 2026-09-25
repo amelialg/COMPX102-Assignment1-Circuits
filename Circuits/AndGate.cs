@@ -68,9 +68,6 @@ namespace Circuits
                 //Draw the gate using provided image.
                 paper.DrawImage(Properties.Resources.AndGate, Left, Top);
             }
-
-            Pen pen = new Pen(Color.Red);
-            paper.DrawRectangle(pen, Left, Top, 20, 20);
         }
 
         /// <summary>
@@ -120,7 +117,7 @@ namespace Circuits
         /// <returns>Fresh copy of the AND gate.</returns>
         public override Gate Clone()
         {
-            //Create a copy of and gate and return.
+            //Create a copy of AND gate and return.
             AndGate copyAndGate = new AndGate(left, top);
             return copyAndGate;
         }

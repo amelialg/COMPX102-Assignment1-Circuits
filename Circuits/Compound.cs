@@ -14,7 +14,7 @@ namespace Circuits
         public List<Gate> gateObjectsList = new List<Gate>();
 
         /// <summary>
-        /// Gets the left hand edge of the gate.
+        /// Gets and sets the left hand edge of the gate.
         /// </summary>
         public override int Left
         {
@@ -23,7 +23,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Gets the top edge of the gate.
+        /// Gets and sets the top edge of the gate.
         /// </summary>
         public override int Top
         {
@@ -31,6 +31,9 @@ namespace Circuits
             set { top = value; }
         }
 
+        /// <summary>
+        /// Gets and sets the selected bool property.
+        /// </summary>
         public override bool Selected
         {
             get { return selected; }
@@ -53,8 +56,8 @@ namespace Circuits
         /// <summary>
         /// Constructor to initalise values passed in.
         /// </summary>
-        /// <param name=""></param>
-        /// <param name=""></param>
+        /// <param name="x">x position of the gate.</param>
+        /// <param name="y">y position of the gate.</param>
         public Compound(int x, int y) : base(x, y)
         {
             MoveTo(x, y);
@@ -93,14 +96,13 @@ namespace Circuits
             //Check if mouse is on the child gates 
             foreach (Gate g in gateObjectsList)
             {
-                Console.WriteLine(g.Selected);
+                //If mouse is on a child gate in the compound.
                 if (g.IsMouseOn(x, y))
                 {
                     Selected = !Selected;
                     return true;
                 }
             }
-
             return false;
                  
          }
@@ -111,26 +113,27 @@ namespace Circuits
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
+            //Declare brush object.
             Brush brush;
             
             //Check if the gate has been selected
             if (selected)
             {
+                //Set brush to selected brush colour.
                 brush = selectedBrush;
             }
             else
             {
+                //Set brush to deselected brush colour.
                 brush = normalBrush;
             }
 
+            //For each gate in gate object list.
             foreach (Gate g in gateObjectsList)
             {
+                //Draw child gate.
                 g.Draw(paper);
- 
             }
-
-            Pen pen = new Pen(Color.Red);
-            paper.DrawRectangle(pen, Left, Top, 20, 20);
         }
 
         /// <summary>
@@ -153,15 +156,13 @@ namespace Circuits
             Left = x; //set left of compound gate to x passed in (mouse click x)
             Top = y;  
 
-
             //Move the gates (w/pins too)
-            //Foreach gate in the gate list.
+            //Foreach gate in the gate object list.
             foreach (Gate g in gateObjectsList)
             {
                 //Move the left of the current gate to the left of gate + the x distance,
                 //Move the top of the current gate + the y distance.
                 g.MoveTo(g.Left + xDistance, g.Top + yDistance);
-                
             }
         }
 
@@ -188,15 +189,18 @@ namespace Circuits
         /// <summary>
         /// Clones the compound gate.
         /// </summary>
-        /// <returns>Fresh copy of the AND gate.</returns>
+        /// <returns>Fresh copy of the Compound gate.</returns>
         public override Gate Clone()
         {
-            //Create a copy of and gate and return.
+            //Create a copy of Compound gate and return.
             Compound copyCompoundGate = new Compound(Left, Top);
+
+            //For each gate in gate object list.
             foreach (Gate g in gateObjectsList)
             {
+                //Clone child gate.
                 Gate cloned = (Gate) g.Clone();
-                //Add gate to new compound.
+                //Add child gate to new compound.
                 copyCompoundGate.AddGate(cloned);
             }
             return copyCompoundGate;
